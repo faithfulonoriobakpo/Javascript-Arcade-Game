@@ -49,6 +49,14 @@ class Player {
     }
 }
 
+let enemyOne = new Enemy(0,60);
+let enemyTwo = new Enemy(-10,145);
+let enemyThree = new Enemy(-50,230);
+
+let allEnemies = [enemyOne,enemyTwo,enemyThree];
+
+let player = new Player();
+
 // This listens for key presses and sends the keys to
 // Player.handleInput() method.
 document.addEventListener('keyup', function(e) {
