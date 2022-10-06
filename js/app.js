@@ -13,6 +13,7 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 600){
         this.x *= dt;
         this.speed += 8;
+        this.y = [60,145,230][Math.floor((Math.random() * 3))];
     }
 };
 
@@ -50,8 +51,8 @@ class Player {
 }
 
 let enemyOne = new Enemy(0,60);
-let enemyTwo = new Enemy(-10,145);
-let enemyThree = new Enemy(-50,230);
+let enemyTwo = new Enemy(-30,145);
+let enemyThree = new Enemy(-70,230);
 
 let allEnemies = [enemyOne,enemyTwo,enemyThree];
 
