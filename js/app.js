@@ -9,16 +9,17 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    this.x += dt * this.speed;
+    if(this.x > 600){
+        this.x *= dt;
+        this.speed += 8;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
-
-
-
 
 
 // This listens for key presses and sends the keys to
