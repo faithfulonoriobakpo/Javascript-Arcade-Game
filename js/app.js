@@ -1,7 +1,9 @@
 // Enemies player must avoid
-var Enemy = function(x,y) {
+var Enemy = function(x,y,w,h) {
     this.x = x;
     this.y = y;
+    this.w = w;
+    this.h = h;
     this.speed = Math.floor(Math.random() * (100 - 70 + 1) + 70);
     this.sprite = 'images/enemy-bug.png';
 };
@@ -13,20 +15,22 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 600){
         this.x *= dt;
         this.speed += 8;
-        this.y = [60,145,230][Math.floor((Math.random() * 3))];
+        this.y = [75,160,240][Math.floor((Math.random() * 3))];
     }
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.w, this.h);
 };
 
 class Player {
-    constructor(x=200,y=380){
+    constructor(x=200,y=380,w=101,h=171){
         this.sprite = 'images/char-boy.png';
         this.x = x;
         this.y = y;
+        this.w = w;
+        this.h = h;
     }
     handleInput(direction){
         if(direction == 'left' && this.x != 0){
@@ -46,13 +50,13 @@ class Player {
 
     }
     render(){
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.w, this.h);
     }
 }
 
-let enemyOne = new Enemy(0,60);
-let enemyTwo = new Enemy(-30,145);
-let enemyThree = new Enemy(-70,230);
+let enemyOne = new Enemy(0,75,100,150);
+let enemyTwo = new Enemy(-30,160,100,150);
+let enemyThree = new Enemy(-70,240,100,150);
 
 let allEnemies = [enemyOne,enemyTwo,enemyThree];
 
