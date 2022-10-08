@@ -13,7 +13,7 @@ var Enemy = function(x,y,w,h) {
 Enemy.prototype.update = function(dt) {
     this.x += dt * this.speed;
     if(this.x > 600){
-        this.x *= dt;
+        this.x = -10;
         this.speed += 8;
         this.y = [75,160,240][Math.floor((Math.random() * 3))];
     }
