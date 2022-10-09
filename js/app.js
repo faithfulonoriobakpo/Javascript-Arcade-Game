@@ -49,6 +49,15 @@ class Player {
         else if(direction == 'up' && this.y != -20){
             this.y -= 80;
             movesCount += 1;
+            if(movesCount == 5){
+                setTimeout(() => {
+                    movesCount = 0;
+                    player.x = 200;
+                    player.y = 380;
+                    playerScore += 10;
+                    playerScoreView.innerHTML = playerScore;
+                },300);
+            }
         }
         else if(direction == 'down' && this.y != 380){
             this.y += 80;
@@ -56,15 +65,6 @@ class Player {
         }
     }
     update(){
-        if(movesCount == 5){
-            setTimeout(() => {
-                movesCount = 0;
-                player.x = 200;
-                player.y = 380;
-                playerScore += 10;
-                playerScoreView.innerHTML = playerScore;
-            },200);
-        }
     }
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.w, this.h);
