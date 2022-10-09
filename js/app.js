@@ -12,7 +12,7 @@ var Enemy = function(x,y,w,h) {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = Math.floor(Math.random() * (100 - 70 + 1) + 70);
+    this.speed = Math.floor(Math.random() * (120 - 90 + 1) + 90);
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -23,6 +23,9 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 600){
         this.x = -10;
         this.y = [75,160,240][Math.floor((Math.random() * 3))];
+    }
+    if(movesCount == 5){
+        this.speed += 5;
     }
 };
 
