@@ -1,3 +1,11 @@
+let playerScore = 0;
+let playerHealth = 5;
+let movesCount = 0;
+let playerScoreView = document.querySelector('#playerScore');
+let playerHealthView = document.querySelector('#playerHealth');
+
+playerHealthView.innerHTML = "❤️❤️❤️❤️❤️";
+playerScoreView.innerHTML = playerScore;
 // Enemies player must avoid
 var Enemy = function(x,y,w,h) {
     this.x = x;
@@ -14,7 +22,6 @@ Enemy.prototype.update = function(dt) {
     this.x += dt * this.speed;
     if(this.x > 600){
         this.x = -10;
-        this.speed += 8;
         this.y = [75,160,240][Math.floor((Math.random() * 3))];
     }
 };
@@ -41,13 +48,23 @@ class Player {
         }
         else if(direction == 'up' && this.y != -20){
             this.y -= 80;
+            movesCount += 1;
         }
         else if(direction == 'down' && this.y != 380){
             this.y += 80;
+            movesCount -= 1;
         }
     }
     update(){
-
+        if(movesCount == 5){
+            setTimeout(() => {
+                movesCount = 0;
+                player.x = 200;
+                player.y = 380;
+                playerScore += 10;
+                playerScoreView.innerHTML = playerScore;
+            },200);
+        }
     }
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.w, this.h);

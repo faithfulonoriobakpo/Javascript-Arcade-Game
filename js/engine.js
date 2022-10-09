@@ -87,6 +87,9 @@ var Engine = (function(global) {
             if(player.y == 60 && enemy.y == 75 || player.y == 140 && enemy.y == 160 
                 || player.y == 220 && enemy.y == 240) {
                     if(enemy.x > player.x - 70 && enemy.x < player.x + 101){
+                        if(playerHealth > 0) playerHealth -= 1;
+                        playerHealthView.innerHTML = "❤️".repeat(playerHealth);
+                        movesCount = 0;
                         player.x = 200;
                         player.y = 380;
                     }
