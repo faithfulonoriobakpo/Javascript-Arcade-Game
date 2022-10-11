@@ -25,7 +25,7 @@ Enemy.prototype.update = function(dt) {
         this.y = [75,160,240][Math.floor((Math.random() * 3))];
     }
     if(movesCount == 5){
-        this.speed += 5;
+        this.speed += 3;
     }
 };
 
