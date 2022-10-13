@@ -7,25 +7,40 @@ let playerHealthView = document.querySelector('#playerHealth');
 playerHealthView.innerHTML = "❤️❤️❤️❤️❤️";
 playerScoreView.innerHTML = playerScore;
 // Enemies player must avoid
-var Enemy = function(x,y,w,h) {
+var Enemy = function(x,y,w,h,isFlipped=false) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.speed = Math.floor(Math.random() * (120 - 90 + 1) + 90);
-    this.sprite = 'images/enemy-bug.png';
+    this.isFlipped = isFlipped;
+    this.sprite = isFlipped? 'images/enemy-bug-flipped.png':'images/enemy-bug.png';
+
+    this.flip = function(){
+        this.sprite = 'images/enemy-bug-flipped.png';
+        this.isFlipped = true;
+    }
+
+    this.unflip = function() {
+        this.sprite = 'images/enemy-bug.png';
+        this.isFlipped = false;
+    }
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    this.x += dt * this.speed;
-    if(this.x > 600){
+    this.x = this.isFlipped? this.x - (dt * this.speed): this.x + (dt * this.speed);
+    if(!this.isFlipped && this.x > 600){
         this.x = -10;
         this.y = [75,160,240][Math.floor((Math.random() * 3))];
     }
+    else if(this.isFlipped && this.x < -80){
+        this.x = 550;
+        this.y = [75,160,240][Math.floor((Math.random() * 3))];
+    }
     if(movesCount == 5){
-        this.speed += 3;
+        this.speed += 2;
     }
 };
 
@@ -75,7 +90,7 @@ class Player {
 }
 
 let enemyOne = new Enemy(0,75,100,150);
-let enemyTwo = new Enemy(-30,160,100,150);
+let enemyTwo = new Enemy(550,160,100,150, true);
 let enemyThree = new Enemy(-70,240,100,150);
 
 let allEnemies = [enemyOne,enemyTwo,enemyThree];
