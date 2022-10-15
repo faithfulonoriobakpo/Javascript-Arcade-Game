@@ -19,25 +19,40 @@ var Enemy = function(x,y,w,h,isFlipped=false) {
     this.flip = function(){
         this.sprite = 'images/enemy-bug-flipped.png';
         this.isFlipped = true;
+        this.x = 550;
+        this.y = [75,160,240][Math.floor((Math.random() * 3))];
     }
 
     this.unflip = function() {
         this.sprite = 'images/enemy-bug.png';
         this.isFlipped = false;
+        this.x = -10;
+        this.y = [75,160,240][Math.floor((Math.random() * 3))];
     }
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    let randomResult = Math.floor(Math.random()*2);
     this.x = this.isFlipped? this.x - (dt * this.speed): this.x + (dt * this.speed);
     if(!this.isFlipped && this.x > 600){
-        this.x = -10;
-        this.y = [75,160,240][Math.floor((Math.random() * 3))];
+        if(randomResult == 0){
+            this.flip();
+        }
+        else{
+            this.x = -10;
+            this.y = [75,160,240][Math.floor((Math.random() * 3))];
+        }
     }
-    else if(this.isFlipped && this.x < -80){
-        this.x = 550;
-        this.y = [75,160,240][Math.floor((Math.random() * 3))];
+    else if(this.isFlipped && this.x < -120){
+        if(randomResult == 1){
+            this.unflip();
+        }
+        else{
+            this.x = 550;
+            this.y = [75,160,240][Math.floor((Math.random() * 3))];
+        }
     }
     if(movesCount == 5){
         this.speed += 2;
