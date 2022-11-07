@@ -1,3 +1,4 @@
+let jewels = [];
 let playerScore = 0;
 let playerHealth = 5;
 let movesCount = 0;
@@ -98,6 +99,33 @@ class Player {
         }
     }
     update(){
+    }
+    render(){
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.w, this.h);
+    }
+}
+
+class Heart {
+    constructor(x,y,w,h){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.sprite = 'images/Heart.png';
+    }
+    render(){
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.w, this.h);
+    }
+}
+
+class Gem {
+    constructor(x,y,w,h){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.color = ['Blue', 'Green', 'Orange'][Math.floor(Math.random()*3)];
+        this.sprite = `images/Gem ${this.color}.png`;
     }
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.w, this.h);
