@@ -98,7 +98,18 @@ var Engine = (function(global) {
         })
     }
 
-    function collectTreasure(){}
+    function collectTreasure(){
+        if(jewels.length < 1) return;
+        jewels.forEach( (jewel, index) => {
+            if(player.y == 60 && jewel.y == 75 || player.y == 140 && jewel.y == 160 
+                || player.y == 220 && jewel.y == 240) {
+                    if(jewel.x > player.x - 70 && jewel.x < player.x + 101){
+                        playerScore += 20;
+                        jewels.splice(index, 1);
+                    }
+            }
+        })
+    }
 
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
