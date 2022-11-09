@@ -140,6 +140,10 @@ let allEnemies = [enemyOne,enemyTwo,enemyThree];
 
 let player = new Player();
 
+setInterval( () => {
+    const y = [75,160,240][Math.floor((Math.random() * 3))]; 
+    if(jewels.length < 2) jewels.push(new Gem(300,y,50,75));
+}, 10000);
 // This listens for key presses and sends the keys to
 // Player.handleInput() method.
 document.addEventListener('keyup', function(e) {
