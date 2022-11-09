@@ -182,6 +182,10 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        if(jewels.length > 0) {
+            jewels.forEach((jewel) => {jewel.render();});
+        }
+
         player.render();
     }
 
