@@ -101,7 +101,7 @@ var Engine = (function(global) {
     function collectTreasure(){
         if(jewels.length < 1) return;
         jewels.forEach( (jewel, index) => {
-            if(player.y == 60 && jewel.y == 75 || player.y == 140 && jewel.y == 160 
+            if(player.y == 60 && jewel.y == 35 || player.y == 140 && jewel.y == 80 
                 || player.y == 220 && jewel.y == 240) {
                     if(jewel.x > player.x - 70 && jewel.x < player.x + 101){
                         playerScore += 20;
