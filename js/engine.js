@@ -103,7 +103,7 @@ var Engine = (function(global) {
         jewels.forEach( (jewel, index) => {
             if(player.y == 60 && jewel.y == 75 || player.y == 140 && jewel.y == 160 
                 || player.y == 220 && jewel.y == 240) {
-                    if(jewel.x > player.x - 35 && jewel.x < player.x + 51){
+                    if(jewel.x > player.x - 70 && jewel.x < player.x + 101){
                         playerScore += 20;
                         jewels.splice(index, 1);
                     }
