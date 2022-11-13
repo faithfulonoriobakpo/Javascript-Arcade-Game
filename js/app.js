@@ -140,8 +140,12 @@ let allEnemies = [enemyOne,enemyTwo,enemyThree];
 
 let player = new Player();
 
+
+
 setInterval( () => {
-    const y = Math.floor((Math.random() * 165) + 75);
+    const yOptions = [[Math.floor(Math.random() * 36) + 105], 
+                        [Math.floor(Math.random() * 34) + 190], [Math.floor(Math.random() * 31) + 273]];
+    const y = yOptions[Math.floor((Math.random() * 3))];
     const x = Math.floor((Math.random() * 430) + 20);
     if(jewels.length < 2) jewels.push(new Gem(x,y,50,75));
 }, 10000);
