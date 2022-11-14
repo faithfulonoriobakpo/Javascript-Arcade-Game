@@ -145,8 +145,12 @@ let player = new Player();
 setInterval( () => {
     const yOptions = [[Math.floor(Math.random() * 36) + 105], 
                         [Math.floor(Math.random() * 34) + 190], [Math.floor(Math.random() * 31) + 273]];
-    const y = yOptions[Math.floor((Math.random() * 3))];
-    const x = Math.floor((Math.random() * 430) + 20);
+    const y = yOptions[Math.floor(Math.random() * 3)];
+
+    const xOptions = [[Math.floor(Math.random() * 46) + 3], [Math.floor(Math.random() * 46) + 103],
+                        [Math.floor(Math.random() * 46) + 203], [Math.floor(Math.random() * 46) + 303],
+                        [Math.floor(Math.random() * 48) + 403]];
+    const x = xOptions[Math.floor(Math.random() * 5)];
     if(jewels.length < 2) jewels.push(new Gem(x,y,50,75));
 }, 10000);
 // This listens for key presses and sends the keys to
